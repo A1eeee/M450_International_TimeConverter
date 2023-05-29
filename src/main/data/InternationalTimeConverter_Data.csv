@@ -1,0 +1,198 @@
+Land,Ländercode,Offset,Kontinent
+Afghanistan, AF, +4:30, Asien
+Albanien, AL, +1, Europa
+Algerien, DZ, +1, Afrika
+Andorra, AD, +1, Europa
+Angola, AO, +1, Afrika
+Antigua und Barbuda, AG, -4, Nordamerika
+Argentinien, AR, -3, Südamerika
+Armenien, AM, +4, Asien
+Australien, AU, +10, Australien
+Österreich, AT, +2, Europa
+Aserbaidschan, AZ, +4, Asien
+Bahamas, BS, -5, Nordamerika
+Bahrain, BH, +3, Asien
+Bangladesch, BD, +6, Asien
+Barbados, BB, -4, Nordamerika
+Weißrussland, BY, +3, Europa
+Belgien, BE, +2, Europa
+Belize, BZ, -6, Nordamerika
+Benin, BJ, +1, Afrika
+Bhutan, BT, +6, Asien
+Bolivien, BO, -4, Südamerika
+Bosnien und Herzegowina, BA, +2, Europa
+Botswana, BW, +2, Afrika
+Brasilien, BR, -3, Südamerika
+Brunei Darussalam, BN, +8, Asien
+Bulgarien, BG, +3, Europa
+Burkina Faso, BF, +0, Afrika
+Burundi, BI, +2, Afrika
+Kambodscha, KH, +7, Asien
+Kamerun, CM, +1, Afrika
+Kanada, CA, -8, Nordamerika
+Kap Verde, CV, -1, Afrika
+Zentralafrikanische Republik, CF, +1, Afrika
+Tschad, TD, +1, Afrika
+Chile, CL, -4, Südamerika
+China, CN, +8, Asien
+Kolumbien, CO, -5, Südamerika
+Komoren, KM, +3, Afrika
+Kongo, CG, +1, Afrika
+Demokratische Republik Kongo, CD, +1, Afrika
+Costa Rica, CR, -6, Nordamerika
+Kroatien, HR, +2, Europa
+Kuba, CU, -5, Nordamerika
+Zypern, CY, +2, Asien
+Tschechien, CZ, +2, Europa
+Dänemark, DK, +2, Europa
+Dschibuti, DJ, +3, Afrika
+Dominica, DM, -4, Nordamerika
+Dominikanische Republik, DO, -4, Nordamerika
+Osttimor, TL, +9, Asien
+Ecuador, EC, -6, Südamerika
+Ägypten, EG, +2, Afrika
+El Salvador, SV, -6, Nordamerika
+Äquatorialguinea, GQ, +1, Afrika
+Eritrea, ER, +3, Afrika
+Estland, EE, +3, Europa
+Eswatini, SZ, +2, Afrika
+Äthiopien, ET, +3, Afrika
+Fidschi, FJ, +12, Australien
+Finnland, FI, +3, Europa
+Frankreich, FR, +2, Europa
+Gabun, GA, +1, Afrika
+Gambia, GM, +0, Afrika
+Georgien, GE, +4, Asien
+Deutschland, DE, +2, Europa
+Ghana, GH, +0, Afrika
+Griechenland, GR, +3, Europa
+Grenada, GD, -4, Nordamerika
+Guatemala, GT, -6, Nordamerika
+Guinea, GN, +0, Afrika
+Guinea-Bissau, GW, +0, Afrika
+Guyana, GY, -4, Südamerika
+Haiti, HT, -5, Nordamerika
+Honduras, HN, -6, Nordamerika
+Ungarn, HU, +2, Europa
+Island, IS, +0, Europa
+Indien, IN, +5:30, Asien
+Indonesien, ID, +9, Asien
+Iran, IR, +4:30, Asien
+Irak, IQ, +3, Asien
+Irland, IE, +1, Europa
+Israel, IL, +2, Asien
+Italien, IT, +2, Europa
+Jamaika, JM, -5, Nordamerika
+Japan, JP, +9, Asien
+Jordanien, JO, +3, Asien
+Kasachstan, KZ, +6, Asien
+Kenia, KE, +3, Afrika
+Kiribati, KI, +13, Australien
+Nordkorea, KP, +9, Asien
+Südkorea, KR, +9, Asien
+Kuwait, KW, +3, Asien
+Kirgisistan, KG, +6, Asien
+Laos, LA, +7, Asien
+Lettland, LV, +3, Europa
+Libanon, LB, +2, Asien
+Lesotho, LS, +2, Afrika
+Liberia, LR, +0, Afrika
+Libyen, LY, +2, Afrika
+Liechtenstein, LI, +1, Europa
+Litauen, LT, +3, Europa
+Luxemburg, LU, +2, Europa
+Madagaskar, MG, +3, Afrika
+Malawi, MW, +2, Afrika
+Malaysia, MY, +8, Asien
+Malediven, MV, +5, Asien
+Mali, ML, +0, Afrika
+Malta, MT, +2, Europa
+Marshallinseln, MH, +12, Australien
+Mauretanien, MR, +0, Afrika
+Mauritius, MU, +4, Afrika
+Mexiko, MX, -7, Nordamerika
+Mikronesien, FM, +10, Australien
+Moldawien, MD, +2, Europa
+Monaco, MC, +2, Europa
+Mongolei, MN, +8, Asien
+Montenegro, ME, +2, Europa
+Montserrat, MS, -4, Nordamerika
+Marokko, MA, +1, Afrika
+Mosambik, MZ, +2, Afrika
+Myanmar, MM, +6:30, Asien
+Namibia, NA, +2, Afrika
+Nauru, NR, +12, Australien
+Nepal, NP, +5:45, Asien
+Niederlande, NL, +2, Europa
+Neuseeland, NZ, +12, Australien
+Nicaragua, NI, -6, Nordamerika
+Niger, NE, +1, Afrika
+Nigeria, NG, +1, Afrika
+Niue, NU, -11:30, Australien
+Nordmazedonien, MK, +2, Europa
+Norwegen, NO, +2, Europa
+Oman, OM, +4, Asien
+Pakistan, PK, +5, Asien
+Palau, PW, +9, Australien
+Panama, PA, -5, Nordamerika
+Papua-Neuguinea, PG, +10, Australien
+Paraguay, PY, -4, Südamerika
+Peru, PE, -5, Südamerika
+Philippinen, PH, +8, Asien
+Polen, PL, +2, Europa
+Portugal, PT, +1, Europa
+Katar, QA, +3, Asien
+Rumänien, RO, +3, Europa
+Russland, RU, +3, Europa
+Ruanda, RW, +2, Afrika
+Saint Kitts und Nevis, KN, -4, Nordamerika
+Saint Lucia, LC, -4, Nordamerika
+Saint Vincent und die Grenadinen, VC, -4, Nordamerika
+Samoa, WS, +13, Australien
+San Marino, SM, +2, Europa
+São Tomé und Príncipe, ST, +0, Afrika
+Saudi-Arabien, SA, +3, Asien
+Senegal, SN, +0, Afrika
+Serbien, RS, +2, Europa
+Seychellen, SC, +4, Afrika
+Sierra Leone, SL, +0, Afrika
+Singapur, SG, +8, Asien
+Slowakei, SK, +2, Europa
+Slowenien, SI, +2, Europa
+Salomonen, SB, +11, Australien
+Somalia, SO, +3, Afrika
+Südafrika, ZA, +2, Afrika
+Südsudan, SS, +2, Afrika
+Spanien, ES, +2, Europa
+Sri Lanka, LK, +5:30, Asien
+Sudan, SD, +2, Afrika
+Suriname, SR, -3, Südamerika
+Schweden, SE, +2, Europa
+Schweiz, CH, +2, Europa
+Syrien, SY, +2, Asien
+Taiwan, TW, +8, Asien
+Tadschikistan, TJ, +5, Asien
+Tansania, TZ, +3, Afrika
+Thailand, TH, +7, Asien
+Togo, TG, +0, Afrika
+Tonga, TO, +13, Australien
+Trinidad und Tobago, TT, -4, Nordamerika
+Tunesien, TN, +1, Afrika
+Türkei, TR, +3, Asien
+Turkmenistan, TM, +5, Asien
+Tuvalu, TV, +12, Australien
+Uganda, UG, +3, Afrika
+Ukraine, UA, +3, Europa
+Vereinigte Arabische Emirate, AE, +4, Asien
+Vereinigtes Königreich, GB, +1, Europa
+Vereinigte Staaten von Amerika, US, -8, Nordamerika
+Uruguay, UY, -3, Südamerika
+Usbekistan, UZ, +5, Asien
+Vanuatu, VU, +11, Australien
+Vatikanstadt, VA, +2, Europa
+Venezuela, VE, -4, Südamerika
+Vietnam, VN, +7, Asien
+Jemen, YE, +3, Asien
+Sambia, ZM, +2, Afrika
+Simbabwe, ZW, +2, Afrika
+
