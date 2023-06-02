@@ -8,6 +8,7 @@ public class Main {
 
         TimeConverter timeConverter = new TimeConverter();
 
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Wählen sie eine Zahl von 1 - 4: ");
         String inputNumber = scanner.nextLine();
@@ -15,34 +16,32 @@ public class Main {
 
         switch (inputNumber){
 
-            case "1":
-                System.out.print("Enter a Ländercode: ");
-                String inputCountryCode = scanner.nextLine().toUpperCase();
-                timeConverter.filtrierungNachLeander(inputCountryCode);
-                break;
+                case "1":
+                    timeConverter.filtrierungNachLeander();
+                    break;
 
-            case "2":
-                timeConverter.leanderCodes_ausgabe();
-                break;
+                case "2":
+                    timeConverter.filtrierungNachKontinent();
+                    break;
 
-            case "3":
-                timeConverter.leanderCodes_ausgabe();
-                break;
+                case "3":
+                    timeConverter.gmt_funktion();
+                    break;
 
-            case "4":
-                timeConverter.leanderCodes_ausgabe();
-                break;
+                case "4":
+                    timeConverter.leanderCodes_ausgabe();
+                    break;
 
-            case "b":
-                System.exit(0);
-                break;
+                case "b":
+                    System.exit(0);
+                    break;
 
-            case "B":
-                System.exit(0);
-                break;
+                case "B":
+                    System.exit(0);
+                    break;
 
-            default:
-        }
+                default:
+            }
 
     }
 }
