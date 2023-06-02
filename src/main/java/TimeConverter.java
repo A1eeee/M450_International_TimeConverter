@@ -169,8 +169,8 @@ public class TimeConverter {
             if (found) {
                 LocalDateTime localDateTime = LocalDateTime.now();
                 ZoneOffset zoneOffset = ZoneOffset.of(offset.replaceAll("[^0-9+-]", ""));
-                LocalDateTime adjustedDateTime = localDateTime.plusSeconds(zoneOffset.getTotalSeconds());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                LocalDateTime adjustedDateTime = localDateTime.plusSeconds(zoneOffset.getTotalSeconds()).minusHours(1);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
                 System.out.println("Country Name: " + countryName);
                 System.out.println("Country Code: " + countryCode);
