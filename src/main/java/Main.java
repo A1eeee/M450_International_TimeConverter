@@ -1,20 +1,23 @@
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
 
         TimeConverter timeConverter = new TimeConverter();
 
+        boolean gueltig = false;
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Wählen sie eine Zahl von 1 - 4: ");
-        String inputNumber = scanner.nextLine();
+        while (!gueltig){
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Wählen sie eine Zahl von 1 - 4: ");
+            String inputNumber = scanner.nextLine();
 
-
-        switch (inputNumber){
+            switch (inputNumber){
 
                 case "1":
                     timeConverter.filtrierungNachLeander();
@@ -41,7 +44,17 @@ public class Main {
                     break;
 
                 default:
+                    System.out.println("Möchten Sie die Eingabe der Auswahl wiederholen? (Ja/Nein) | Program beenden (B/b)");
+                    String inputAuswahlW = scanner.nextLine();
+
+                    if(inputAuswahlW.equalsIgnoreCase("nein") || inputAuswahlW.equalsIgnoreCase("no")){
+                        System.exit(0);
+                    }
+                    timeConverter.fehlermeldung(inputAuswahlW);
             }
+
+        }
+
 
     }
 }

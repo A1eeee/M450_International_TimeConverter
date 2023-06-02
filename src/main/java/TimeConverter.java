@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class TimeConverter {
 
+
+    private String kontinent;
     String csvFile = "src/main/data/InternationalTimeConverter_Data.csv";
 
     WerteSpeichern werteSpeichern = new WerteSpeichern();
@@ -20,13 +22,27 @@ public class TimeConverter {
 
     }
 
-
     public String fehlermeldung(String input) {
         if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("ja")) {
             return "Y";
-        } else {
+        } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
+            Main.main(null);
             return "N";
+        } else if (input.equalsIgnoreCase("b")) {
+            System.exit(0);
         }
+        return null;
+    }
+
+    public String weiterFuehren(String input){
+        if(input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("Ja")){
+            return "Y";
+        } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
+            Main.main(null);
+        }else if (input.equalsIgnoreCase("b")) {
+            System.exit(0);
+        }
+        return null;
     }
 
 
@@ -42,6 +58,7 @@ public class TimeConverter {
                 String line;
                 boolean isFirstLine = true;
                 boolean found = false;
+
 
                 while ((line = br.readLine()) != null) {
                     if (isFirstLine) {
@@ -64,13 +81,10 @@ public class TimeConverter {
 
                 if (!found) {
                     System.out.println("Kein gültiger Ländercode.");
-                    System.out.println("Möchten Sie die Eingabe des Ländercodes wiederholen? (Ja/Nein)");
+                    System.out.println("Möchten Sie die Eingabe des Ländercodes wiederholen? (Ja/Nein) | Program beenden (B/b)");
                     String wahl = scanner.nextLine();
 
-                    if (fehlermeldung(wahl).equals("N")) {
-                        System.out.println("Zurück zur Main-Klasse.");
-                        Main.main(null);
-                    }
+                    fehlermeldung(wahl);
 
                 }
             } catch (IOException e) {
@@ -103,6 +117,7 @@ public class TimeConverter {
                     String continent = data[3].trim();
                     String countryCode = data[1].trim();
 
+
                     if (continent.equalsIgnoreCase(inputContinent)) {
                         werteSpeichern.setLandesCode(countryCode);
                         String output = String.format("Country: %-2s | %s", werteSpeichern.getLandesCode(), country);
@@ -112,14 +127,21 @@ public class TimeConverter {
                     }
                 }
 
+
                 if (!found) {
                     System.out.println("Kein gültiges Kontinent.");
-                    System.out.println("Möchten Sie die Eingabe des Kontinents wiederholen? (Ja/Nein)");
+                    System.out.println("Möchten Sie die Eingabe des Kontinentes wiederholen? (Ja/Nein) | Program beenden (B/b)");
                     String wahl = scanner.nextLine();
 
-                    if (fehlermeldung(wahl).equals("N")) {
-                        System.out.println("Zurück zur Main-Klasse.");
-                        Main.main(null);
+                    fehlermeldung(wahl);
+
+                }
+                else {
+                    System.out.println("Wohlen sie nach einem Land Filtrieren? (Ja/Nein) | Program beenden (B/b)");
+                    String weiterWahl = scanner.nextLine();
+
+                    if(weiterFuehren(weiterWahl).equals("Y")){
+                        filtrierungNachLeanderNachKontinent(inputContinent);
                     }
                 }
             } catch (IOException e) {
@@ -130,59 +152,108 @@ public class TimeConverter {
     }
 
     public void gmt_funktion() {
-        System.out.print("Ländercode eingeben: ");
-        String inputCountryCode = scanner.nextLine().toUpperCase();
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            br.readLine(); // Skip header line
 
-            boolean found = false;
-            String countryCode = "";
-            String countryName = "";
-            String offset = "";
-            String continent = "";
+        boolean gueltig = false;
 
+        while (!gueltig){
+            System.out.print("Ländercode eingeben: ");
+            String inputCountryCode = scanner.nextLine().toUpperCase();
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+                br.readLine(); // Skip header line
 
-            String line;
-            boolean isFirstLine = true;
+                boolean found = false;
 
-            while ((line = br.readLine()) != null) {
-                if (isFirstLine) {
-                    isFirstLine = false;
-                    continue;  // Skip the first line (column headers)
+                String line;
+                boolean isFirstLine = true;
+
+                while ((line = br.readLine()) != null) {
+                    if (isFirstLine) {
+                        isFirstLine = false;
+                        continue;  // Skip the first line (column headers)
+                    }
+
+                    String[] data = line.split(",");
+                    String country = data[0].trim();
+                    String countrycode = data[1].trim();
+                    String offset = data[2].trim();
+                    String continent = data[3].trim();
+
+                    if (countrycode.equalsIgnoreCase(inputCountryCode)) {
+                        LocalDateTime localDateTime = LocalDateTime.now();
+                        ZoneOffset zoneOffset = ZoneOffset.of(offset.replaceAll("[^0-9+-]", ""));
+                        LocalDateTime adjustedDateTime = localDateTime.plusSeconds(zoneOffset.getTotalSeconds()).minusHours(1);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+                        System.out.println("Country Name: " + country);
+                        System.out.println("Country Code: " + countrycode);
+                        System.out.println("Offset Adjusted Local Time: " + adjustedDateTime.format(formatter));
+                        System.out.println("Continent: " + continent);
+                        found = true;
+                        break;
+                    }
                 }
 
-                String[] data = line.split(",");
-                String country = data[0].trim();
-                String countrycode = data[1].trim();
 
-                if (countrycode.equalsIgnoreCase(inputCountryCode)) {
-                    countryCode = countrycode;
-                    countryName = country;
-                    offset = data[2].trim();
-                    continent = data[3].trim();
-                    found = true;
-                    break;
+                if (!found) {
+                    System.out.println("Kein gültiger Ländercode.");
+                    System.out.println("Möchten Sie die Eingabe des Ländercodes wiederholen? (Ja/Nein) | Program beenden (B/b)");
+                    String wahl = scanner.nextLine();
+
+                    fehlermeldung(wahl);
+
                 }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-
-            if (found) {
-                LocalDateTime localDateTime = LocalDateTime.now();
-                ZoneOffset zoneOffset = ZoneOffset.of(offset.replaceAll("[^0-9+-]", ""));
-                LocalDateTime adjustedDateTime = localDateTime.plusSeconds(zoneOffset.getTotalSeconds()).minusHours(1);
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
-                System.out.println("Country Name: " + countryName);
-                System.out.println("Country Code: " + countryCode);
-                System.out.println("Offset Adjusted Local Time: " + adjustedDateTime.format(formatter));
-                System.out.println("Continent: " + continent);
-            } else {
-                System.out.println("Country code not found.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
+
+    public void filtrierungNachLeanderNachKontinent(String continent) {
+        boolean gueltig = false;
+        while (!gueltig) {
+            System.out.print("Ländercode eingeben: ");
+            String inputCountryCode = scanner.nextLine().toUpperCase();
+
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+                String line;
+                boolean isFirstLine = true;
+                boolean found = false;
+
+                while ((line = br.readLine()) != null) {
+                    if (isFirstLine) {
+                        isFirstLine = false;
+                        continue;  // Skip the first line (column headers)
+                    }
+
+                    String[] data = line.split(",");
+                    String country = data[0].trim();  // Assuming "Land" is at index 0
+                    String countryCode = data[1].trim();  // Assuming "Ländercode" is at index 1
+                    String countryContinent = data[3].trim();  // Assuming "Kontinent" is at index 3
+
+                    if (countryCode.equalsIgnoreCase(inputCountryCode) && countryContinent.equalsIgnoreCase(continent)) {
+                        werteSpeichern.setLandesCode(countryCode);
+                        System.out.println("Country: " + country);
+                        System.out.println("Country Code: " + werteSpeichern.getLandesCode());
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("Kein gültiger Ländercode für den ausgewählten Kontinent.");
+                    System.out.println("Möchten Sie die Eingabe des Ländercodes wiederholen? (Ja/Nein) | Programm beenden (B/b)");
+                    String wahl = scanner.nextLine();
+
+                    fehlermeldung(wahl);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 
 
@@ -208,4 +279,11 @@ public class TimeConverter {
         }
     }
 
+    public String getKontinent() {
+        return kontinent;
+    }
+
+    public void setKontinent(String kontinent) {
+        this.kontinent = kontinent;
+    }
 }
