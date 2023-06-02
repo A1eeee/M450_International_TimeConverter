@@ -21,15 +21,24 @@ public class TimeConverter {
     }
 
     public String fehlermeldung(String input) {
-        if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("ja")) {
-            return "Y";
-        } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
-            Main.main(null);
-            return "N";
-        } else if (input.equalsIgnoreCase("b")) {
-            System.exit(0);
-        }
-        return null;
+
+            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("ja")) {
+                return "Y";
+            } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
+                Main.main(null);
+                return "N";
+            } else if (input.equalsIgnoreCase("b")) {
+                System.exit(0);
+            }
+            else {
+                System.out.println("Keine gueltige eingabe!");
+                System.out.println("Eingabe wiederholen: ");
+                String inputW = scanner.nextLine();
+
+                fehlermeldung(inputW);
+            }
+
+            return null;
     }
 
     public String weiterFuehren(String input){
@@ -37,10 +46,15 @@ public class TimeConverter {
             return "Y";
         } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
             Main.main(null);
+            return "M";
         }else if (input.equalsIgnoreCase("b")) {
             System.exit(0);
+            return "B";
+        }else {
+            System.out.println("Ungültige Eingabe!");
+            System.out.println("Bitte geben Sie eine gültige Option ein.");
+            return weiterFuehren(scanner.nextLine());
         }
-        return null;
     }
 
     public void zurueck(){
@@ -52,6 +66,10 @@ public class TimeConverter {
             Main.main(null);
         } else if (auswahl.equalsIgnoreCase("nein") || auswahl.equalsIgnoreCase("no") || auswahl.equalsIgnoreCase("b")) {
             System.exit(0);
+        }else {
+            System.out.println("Ungültige Eingabe!");
+            System.out.println("Bitte geben Sie eine gültige Option ein.");
+            zurueck();
         }
 
     }
@@ -158,11 +176,22 @@ public class TimeConverter {
                 }
                 else {
                     System.out.println("Wohlen sie nach einem Land Filtrieren? (Ja/Nein) | Program beenden (B/b)");
-                    String weiterWahl = scanner.nextLine();
 
-                    if(weiterFuehren(weiterWahl).equals("Y")){
-                        filtrierungNachLeanderNachKontinent(inputContinent);
+
+                    while (true){
+                        String weiterWahl = scanner.nextLine();
+                        if(weiterFuehren(weiterWahl).equals("Y")){
+                            filtrierungNachLeanderNachKontinent(inputContinent);
+                            break;
+                        } else if (weiterFuehren(weiterWahl).equals("F")) {
+                            System.out.println("Keine gültige Eingabe!");
+                            System.out.println("Eingabe wiederholen: ");
+                            String inputW = scanner.nextLine();
+                            weiterWahl = weiterFuehren(inputW);
+                        }
                     }
+
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
