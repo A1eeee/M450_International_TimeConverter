@@ -5,61 +5,44 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String csvFile = "src/main/data/InternationalTimeConverter_Data.csv";  // Replace with the path to your CSV file
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter a Ländercode: ");
-            String inputCountryCode = scanner.nextLine().toUpperCase();
+        TimeConverter timeConverter = new TimeConverter();
 
-            String line;
-            boolean isFirstLine = true;
-            boolean found = false;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Wählen sie eine Zahl von 1 - 4: ");
+        String inputNumber = scanner.nextLine();
 
-            while ((line = br.readLine()) != null) {
-                if (isFirstLine) {
-                    isFirstLine = false;
-                    continue;  // Skip the first line (column headers)
-                }
 
-                String[] data = line.split(",");
-                String country = data[0].trim();  // Assuming "Land" is at index 0
-                String countrycode = data[1].trim();  // Assuming "Ländercode" is at index 1
+        switch (inputNumber){
 
-                if (countrycode.equalsIgnoreCase(inputCountryCode)) {
-                    System.out.println("Country: " + country);
-                    System.out.println("Country Code: " + countrycode);
-                    found = true;
-                    break;
-                }
-            }
+            case "1":
+                System.out.print("Enter a Ländercode: ");
+                String inputCountryCode = scanner.nextLine().toUpperCase();
+                timeConverter.filtrierungNachLeander(inputCountryCode);
+                break;
 
-            if (!found) {
-                System.out.println("No information found for the entered Ländercode.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            case "2":
+                timeConverter.leanderCodes_ausgabe();
+                break;
+
+            case "3":
+                timeConverter.leanderCodes_ausgabe();
+                break;
+
+            case "4":
+                timeConverter.leanderCodes_ausgabe();
+                break;
+
+            case "b":
+                System.exit(0);
+                break;
+
+            case "B":
+                System.exit(0);
+                break;
+
+            default:
         }
 
-        /*
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            String line;
-            boolean isFirstLine = true;
-
-            while ((line = br.readLine()) != null) {
-                if (isFirstLine) {
-                    isFirstLine = false;
-                    continue;  // Skip the first line (column headers)
-                }
-
-                String[] data = line.split(",");
-                String country = data[0].trim();  // Assuming "Land" is at index 0
-                String countrycode = data[1].trim();  // Assuming "Ländercode" is at index 1
-
-                System.out.println(country + ", " + countrycode);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 }
