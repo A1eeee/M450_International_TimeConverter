@@ -8,9 +8,17 @@ public class Main {
 
         boolean gueltig = false;
 
+        Scanner scanner = new Scanner(System.in);
+
         while (!gueltig){
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Wählen sie eine Zahl von 1 - 4: ");
+
+            System.out.println("Zahl 1: Filtrierung nach Land anhand eines Ländercodes!\n" +
+                    "Zahl 2: Filtrierung nach Kontinent!\n" +
+                    "Zahl 3: GMT Zeit berechnen anhand eines Ländercodes!\n" +
+                    "Zahl 4: Alle gültigen Ländercodes ausgeben!\n" +
+                    "B/b: Programm beenden!\n");
+
+            System.out.print("Wählen sie: ");
             String inputNumber = scanner.nextLine();
 
             switch (inputNumber){
@@ -38,6 +46,7 @@ public class Main {
                 case "B":
                     System.exit(0);
                     break;
+
 
                 default:
                     System.out.println("Möchten Sie die Eingabe der Auswahl wiederholen? (Ja/Nein) | Program beenden (B/b)");
