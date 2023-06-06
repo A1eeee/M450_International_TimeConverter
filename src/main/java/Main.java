@@ -10,6 +10,9 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+
         while (!gueltig){
 
             System.out.println("Zahl 1: Filtrierung nach Land anhand eines Ländercodes!\n" +
