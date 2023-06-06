@@ -4,34 +4,41 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class TimeConverter {
 
-
-    private String kontinent;
     String csvFile = "src/main/data/InternationalTimeConverter_Data.csv";
 
     WerteSpeichern werteSpeichern = new WerteSpeichern();
 
     Scanner scanner = new Scanner(System.in);
 
+    LocalDateTime localDateTime = LocalDateTime.now();
+
     public TimeConverter() {
 
     }
 
     public String fehlermeldung(String input) {
-        if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("ja")) {
-            return "Y";
-        } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
-            Main.main(null);
-            return "N";
-        } else if (input.equalsIgnoreCase("b")) {
-            System.exit(0);
-        }
-        return null;
+
+            if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("ja")) {
+                return "Y";
+            } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
+                Main.main(null);
+                return "N";
+            } else if (input.equalsIgnoreCase("b")) {
+                System.exit(0);
+            }
+            else {
+                System.out.println("Keine gueltige eingabe!");
+                System.out.println("Eingabe wiederholen: ");
+                String inputW = scanner.nextLine();
+
+                fehlermeldung(inputW);
+            }
+
+            return null;
     }
 
     public String weiterFuehren(String input){
@@ -39,10 +46,32 @@ public class TimeConverter {
             return "Y";
         } else if (input.equalsIgnoreCase("no") || input.equalsIgnoreCase("nein")) {
             Main.main(null);
+            return "M";
         }else if (input.equalsIgnoreCase("b")) {
             System.exit(0);
+            return "B";
+        }else {
+            System.out.println("Ungültige Eingabe!");
+            System.out.println("Bitte geben Sie eine gültige Option ein.");
+            return weiterFuehren(scanner.nextLine());
         }
-        return null;
+    }
+
+    public void zurueck(){
+
+        System.out.println("Wollen sie einen neuen Prozess starten? (Ja | Nein -> ) | Programm beenden (Nein/b/B)");
+        String auswahl = scanner.nextLine();
+
+        if(auswahl.equalsIgnoreCase("yes") || auswahl.equalsIgnoreCase("ja")){
+            Main.main(null);
+        } else if (auswahl.equalsIgnoreCase("nein") || auswahl.equalsIgnoreCase("no") || auswahl.equalsIgnoreCase("b")) {
+            System.exit(0);
+        }else {
+            System.out.println("Ungültige Eingabe!");
+            System.out.println("Bitte geben Sie eine gültige Option ein.");
+            zurueck();
+        }
+
     }
 
 
@@ -69,11 +98,17 @@ public class TimeConverter {
                     String[] data = line.split(",");
                     String country = data[0].trim();  // Assuming "Land" is at index 0
                     String countrycode = data[1].trim();  // Assuming "Ländercode" is at index 1
+                    String offset = data[2].trim();
 
                     if (countrycode.equalsIgnoreCase(inputCountryCode)) {
                         werteSpeichern.setLandesCode(countrycode);
+                        ZoneOffset zoneOffset = ZoneOffset.ofHours(Integer.parseInt(offset));
+                        LocalDateTime adjustedDateTime = localDateTime.plusHours(zoneOffset.getTotalSeconds() / 3600).minusHours(1);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
                         System.out.println("Country: " + country);
                         System.out.println("Country Code: " + werteSpeichern.getLandesCode());
+                        System.out.println("Time: " + adjustedDateTime.format(formatter));
                         found = true;
                         break;
                     }
@@ -86,6 +121,9 @@ public class TimeConverter {
 
                     fehlermeldung(wahl);
 
+                }
+                else {
+                    zurueck();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -138,11 +176,22 @@ public class TimeConverter {
                 }
                 else {
                     System.out.println("Wohlen sie nach einem Land Filtrieren? (Ja/Nein) | Program beenden (B/b)");
-                    String weiterWahl = scanner.nextLine();
 
-                    if(weiterFuehren(weiterWahl).equals("Y")){
-                        filtrierungNachLeanderNachKontinent(inputContinent);
+
+                    while (true){
+                        String weiterWahl = scanner.nextLine();
+                        if(weiterFuehren(weiterWahl).equals("Y")){
+                            filtrierungNachLeanderNachKontinent(inputContinent);
+                            break;
+                        } else if (weiterFuehren(weiterWahl).equals("F")) {
+                            System.out.println("Keine gültige Eingabe!");
+                            System.out.println("Eingabe wiederholen: ");
+                            String inputW = scanner.nextLine();
+                            weiterWahl = weiterFuehren(inputW);
+                        }
                     }
+
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -179,7 +228,7 @@ public class TimeConverter {
                     String continent = data[3].trim();
 
                     if (countrycode.equalsIgnoreCase(inputCountryCode)) {
-                        LocalDateTime localDateTime = LocalDateTime.now();
+
                         ZoneOffset zoneOffset = ZoneOffset.of(offset.replaceAll("[^0-9+-]", ""));
                         LocalDateTime adjustedDateTime = localDateTime.plusSeconds(zoneOffset.getTotalSeconds()).minusHours(1);
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -188,6 +237,7 @@ public class TimeConverter {
                         System.out.println("Country Code: " + countrycode);
                         System.out.println("Offset Adjusted Local Time: " + adjustedDateTime.format(formatter));
                         System.out.println("Continent: " + continent);
+                        System.out.println("Zeit unterschied:" + offset);
                         found = true;
                         break;
                     }
@@ -201,6 +251,8 @@ public class TimeConverter {
 
                     fehlermeldung(wahl);
 
+                }else {
+                    zurueck();
                 }
 
             } catch (IOException e) {
@@ -246,16 +298,15 @@ public class TimeConverter {
                     String wahl = scanner.nextLine();
 
                     fehlermeldung(wahl);
+                }else {
+                    zurueck();
                 }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
-
-
-
 
     public void leanderCodes_ausgabe(){
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -273,17 +324,12 @@ public class TimeConverter {
                 String country = data[0].trim();
 
                 System.out.println(countrycode + " " + country);
+
+
             }
+            zurueck();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getKontinent() {
-        return kontinent;
-    }
-
-    public void setKontinent(String kontinent) {
-        this.kontinent = kontinent;
     }
 }
