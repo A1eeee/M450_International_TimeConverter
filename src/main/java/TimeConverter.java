@@ -102,13 +102,16 @@ public class TimeConverter {
 
                     if (countrycode.equalsIgnoreCase(inputCountryCode)) {
                         werteSpeichern.setLandesCode(countrycode);
+
                         ZoneOffset zoneOffset = ZoneOffset.ofHours(Integer.parseInt(offset));
                         LocalDateTime adjustedDateTime = localDateTime.plusHours(zoneOffset.getTotalSeconds() / 3600).minusHours(1);
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-                        System.out.println("Country: " + country);
-                        System.out.println("Country Code: " + werteSpeichern.getLandesCode());
-                        System.out.println("Time: " + adjustedDateTime.format(formatter));
+                        werteSpeichern.setZeitSpeichern(adjustedDateTime.format(formatter));
+
+                        System.out.println("Land: " + country);
+                        System.out.println("Ländercode: " + werteSpeichern.getLandesCode());
+                        System.out.println("Zeit: " + werteSpeichern.getZeitSpeichern());
                         found = true;
                         break;
                     }
@@ -158,7 +161,7 @@ public class TimeConverter {
 
                     if (continent.equalsIgnoreCase(inputContinent)) {
                         werteSpeichern.setLandesCode(countryCode);
-                        String output = String.format("Country: %-2s | %s", werteSpeichern.getLandesCode(), country);
+                        String output = String.format("Land: %-2s | %s", werteSpeichern.getLandesCode(), country);
                         System.out.println(output);
                         found = true;
 
@@ -233,9 +236,11 @@ public class TimeConverter {
                         LocalDateTime adjustedDateTime = localDateTime.plusSeconds(zoneOffset.getTotalSeconds()).minusHours(1);
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 
-                        System.out.println("Country Name: " + country);
-                        System.out.println("Country Code: " + countrycode);
-                        System.out.println("Offset Adjusted Local Time: " + adjustedDateTime.format(formatter));
+                        werteSpeichern.setZeitSpeichern(adjustedDateTime.format(formatter));
+
+                        System.out.println("Land: " + country);
+                        System.out.println("Ländercode: " + countrycode);
+                        System.out.println("Zeit des Landescode: " + werteSpeichern.getZeitSpeichern());
                         System.out.println("Continent: " + continent);
                         System.out.println("Zeit unterschied:" + offset);
                         found = true;
@@ -285,8 +290,8 @@ public class TimeConverter {
 
                     if (countryCode.equalsIgnoreCase(inputCountryCode) && countryContinent.equalsIgnoreCase(continent)) {
                         werteSpeichern.setLandesCode(countryCode);
-                        System.out.println("Country: " + country);
-                        System.out.println("Country Code: " + werteSpeichern.getLandesCode());
+                        System.out.println("Land: " + country);
+                        System.out.println("Länder code: " + werteSpeichern.getLandesCode());
                         found = true;
                         break;
                     }
@@ -323,7 +328,8 @@ public class TimeConverter {
                 String countrycode = data[1].trim();
                 String country = data[0].trim();
 
-                System.out.println(countrycode + " " + country);
+                String output =  String.format("%-2s | %s",countrycode, country);
+                System.out.println(output);
 
 
             }
