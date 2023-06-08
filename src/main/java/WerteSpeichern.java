@@ -1,11 +1,11 @@
 public class WerteSpeichern {
 
-    private String landesCode;
-    private String zeitSpeichern;
-    private String gmtZeitSpeichern;
+    private String landesCode; // Der gespeicherte Ländercode
+    private String zeitSpeichern; // Die gespeicherte Zeit
+    private String gmtZeitSpeichern; // Die gespeicherte GMT-Zeit
 
-    public WerteSpeichern(){
-
+    public WerteSpeichern() {
+        // Konstruktor
     }
 
     public String getLandesCode() {
@@ -32,3 +32,4 @@ public class WerteSpeichern {
         this.gmtZeitSpeichern = gmtZeitSpeichern;
     }
 }
+

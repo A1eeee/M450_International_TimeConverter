@@ -10,9 +10,12 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+
+        //Dient um die Console zu Clearen doch leider Funktioniert dies nicht bei der Konsolen in einer IDE wie IntelliJ
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
+        // Schleife, um das Menü anzuzeigen und Benutzereingaben zu verarbeiten
         while (!gueltig){
 
             System.out.println("Zahl 1: Filtrierung nach Land anhand eines Ländercodes!\n" +
