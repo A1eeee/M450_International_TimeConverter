@@ -192,6 +192,64 @@ public class TimeConverter {
         }
     }
 
+    //Methode um nach Landesname zu Filtrieren
+    public void filtrierung_landesname() {
+        boolean gueltig = false;
+        while (!gueltig) {
+            System.out.print("Land eingeben: ");
+            String inputCountryName = scanner.nextLine().toUpperCase();
+
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+                String line;
+                boolean isFirstLine = true;
+                boolean found = false;
+
+                while ((line = br.readLine()) != null) {
+                    if (isFirstLine) {
+                        isFirstLine = false;
+                        continue;  // Überspringe die erste Zeile (Spaltenüberschriften)
+                    }
+
+                    String[] data = line.split(","); //Die Daten der CSV Datei anhand Kommas Trennen
+                    String country = data[0].trim();  // CSV Datei: "Land" befindet sich an Index 0
+                    String countrycode = data[1].trim();  // CSV Datei: "Ländercode" befindet sich an Index 1
+                    String offset = data[2].trim(); // CSV Datei: "Offset" befindet sich an Index 1
+                    String continent = data[3].trim();
+
+                    if (country.equalsIgnoreCase(inputCountryName)) {
+                        werteSpeichern.setLandesCode(countrycode);
+                        //Berrechnung der Zeit mit Stunden - 1 Stunde da die Lokale Zeit des Projektes in der Schweiz ist
+                        ZoneOffset zoneOffset = ZoneOffset.ofHours(Integer.parseInt(offset));
+                        LocalDateTime adjustedDateTime = localDateTime.plusHours(zoneOffset.getTotalSeconds() / 3600).minusHours(1);
+                        //Konvertierung der ausgabe, das nur Stunden und Minuten ausgegeben werden
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+                        werteSpeichern.setZeitSpeichern(adjustedDateTime.format(formatter));
+
+                        System.out.println("Land: " + country);
+                        System.out.println("Ländercode: " + werteSpeichern.getLandesCode());
+                        System.out.println("Zeit: " + werteSpeichern.getZeitSpeichern());
+                        System.out.println("Kontinent: " + continent);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("Kein gültiger Landesname.");
+                    System.out.println("Möchten Sie die Eingabe des Landesnamens wiederholen? (Ja/Nein) | Programm beenden (B/b)");
+                    String wahl = scanner.nextLine();
+
+                    fehlermeldung(wahl);
+                } else {
+                    zurueck();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     // Methode zur Verarbeitung der GMT-Funktion
     public void gmt_funktion() {
         boolean gueltig = false;
