@@ -4,8 +4,6 @@ public class WerteSpeichern {
     private String zeitSpeichern; // Die gespeicherte Zeit
     private String gmtZeitSpeichern; // Die gespeicherte GMT-Zeit
 
-    private int numberSpeicher;
-
     public WerteSpeichern() {
         // Konstruktor
     }
@@ -34,12 +32,5 @@ public class WerteSpeichern {
         this.gmtZeitSpeichern = gmtZeitSpeichern;
     }
 
-    public int getNumberSpeicher() {
-        return numberSpeicher;
-    }
-
-    public void setNumberSpeicher(int numberSpeicher) {
-        this.numberSpeicher = numberSpeicher;
-    }
 }
 
