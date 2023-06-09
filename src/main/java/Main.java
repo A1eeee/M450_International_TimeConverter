@@ -20,9 +20,9 @@ public class Main {
 
             System.out.println("Zahl 1: Filtrierung nach Land anhand eines Ländercodes!\n" +
                     "Zahl 2: Filtrierung nach Kontinent!\n" +
-                    "Zahl 3: GMT Zeit berechnen anhand eines Ländercodes!\n" +
-                    "Zahl 4: Alle gültigen Ländercodes ausgeben!\n" +
-                    "Zahl 5: Nach Landesnamen filtrieren!\n" +
+                    "Zahl 3: Nach Landesnamen filtrieren!\n" +
+                    "Zahl 4: GMT Zeit berechnen anhand eines Ländercodes!\n" +
+                    "Zahl 5: Alle gültigen Ländercodes ausgeben!\n" +
                     "B/b: Programm beenden!\n");
 
             System.out.print("Wählen sie: ");
@@ -39,15 +39,15 @@ public class Main {
                     break;
 
                 case "3":
-                    timeConverter.gmt_funktion();
+                    timeConverter.filtrierung_landesname();
                     break;
 
                 case "4":
-                    timeConverter.leanderCodes_ausgabe();
+                    timeConverter.gmt_funktion();
                     break;
 
                 case "5":
-                    timeConverter.filtrierung_landesname();
+                    timeConverter.leanderCodes_ausgabe();
                     break;
 
                 case "b":
