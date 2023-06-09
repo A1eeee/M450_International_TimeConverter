@@ -29,7 +29,8 @@ public class TimeConverter {
             Main.main(null);
             return "N";
         } else if (input.equalsIgnoreCase("b")) {
-            System.exit(0);
+            werteSpeichern.setNumberSpeicher(0);
+            System.exit(werteSpeichern.getNumberSpeicher());
         } else {
             System.out.println("Keine gültige Eingabe!");
             System.out.println("Eingabe wiederholen: ");
