@@ -4,11 +4,22 @@ public class WerteSpeichern {
     private String zeitSpeichern; // Die gespeicherte Zeit
     private String gmtZeitSpeichern; // Die gespeicherte GMT-Zeit
 
-    private int numberSpeicher;
+    private String LandesName;
 
     public WerteSpeichern() {
         // Konstruktor
     }
+    public String getLandesName() {
+        return LandesName;
+    }
+
+    public void setLandesName(String landesName) {
+        LandesName = landesName;
+    }
+
+    private int numberSpeicher;
+
+
 
     public String getLandesCode() {
         return landesCode;

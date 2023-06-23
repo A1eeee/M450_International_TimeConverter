@@ -15,6 +15,7 @@ public class Main {
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
+
         // Schleife, um das Menü anzuzeigen und Benutzereingaben zu verarbeiten
         while (!gueltig){
 
@@ -31,11 +32,15 @@ public class Main {
             switch (inputNumber){
 
                 case "1":
-                    timeConverter.filtrierungNachLeander();
+                    System.out.print("Ländercode eingeben: ");
+                    String eingabeL = scanner.nextLine();
+                    timeConverter.filtrierungNachLeander(eingabeL);
                     break;
 
                 case "2":
-                    timeConverter.filtrierungNachKontinent();
+                    System.out.print("Kontinent eingeben: ");
+                    String eingabeK = scanner.nextLine();
+                    timeConverter.filtrierungNachKontinent(eingabeK);
                     break;
 
                 case "3":
@@ -43,7 +48,9 @@ public class Main {
                     break;
 
                 case "4":
-                    timeConverter.gmt_funktion();
+                    System.out.print("Ländercode eingeben: ");
+                    String eingabeG = scanner.nextLine();
+                    timeConverter.gmt_funktion(eingabeG);
                     break;
 
                 case "5":

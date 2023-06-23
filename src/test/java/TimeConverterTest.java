@@ -14,51 +14,40 @@ class TimeConverterTest {
 
     TimeConverter timeConverter = new TimeConverter();
 
-    private final InputStream systemIn = System.in;
-    private final PrintStream systemOut = System.out;
-    private ByteArrayInputStream testIn;
-    private ByteArrayOutputStream testOut;
-
-    @Before
-    public void setUpOutput() {
-        testOut = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(testOut));
-    }
-
-    @After
-    public void restoreSystemInputOutput() {
-        System.setIn(systemIn);
-        System.setOut(systemOut);
-    }
-
 
     @Test
-    void fehlermeldung() {
-        // Arrange
-        String input = "b";
-        testIn = new ByteArrayInputStream(input.getBytes());
-        System.setIn(testIn);
-        timeConverter.werteSpeichern.setNumberSpeicher(0); // Beispielwert
+    void t001() {
 
-        // Act
-        String result = timeConverter.fehlermeldung(input);
+        String wert = timeConverter.filtrierungNachKontinent("Europa");
 
-        // Assert
-        assertNull("Der Rückgabewert sollte null sein.", result);
-        assertEquals("Die NumberSpeicher-Variable sollte auf 0 gesetzt sein.", 0, timeConverter.werteSpeichern.getNumberSpeicher());
-        // Überprüfe die Ausgabe
-        assertEquals("Es sollte keine Ausgabe geben.", 0, testOut.toString().length());
+        assertEquals("VA", wert);
+
     }
 
     @Test
-    void filtrierungNachLeander() {
+    void t002() {
+
+       String wert = timeConverter.filtrierungNachLeander("CH");
+
+
+        assertEquals("Schweiz", wert);
+
     }
 
     @Test
-    void filtrierungNachKontinent() {
+    void t003() {
+
+        String wert = timeConverter.gmt_funktion("CH");
+
+        assertEquals("Schweiz", wert);
     }
 
     @Test
-    void gmt_funktion() {
+    void t004(){
+
+        String wert = timeConverter.fehlermeldung("B");
+
+        assertEquals(0, wert);
+
     }
 }
